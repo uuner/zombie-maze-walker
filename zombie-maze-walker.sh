@@ -7,7 +7,7 @@ if [ -f "$1" ]; then
   MAZEFILE="$1"
 fi
 
-MAZE=$(sed 's#[/\\]#\\&#g;s#^#s/$/#;s#$#~/#;$s#~/\$#/#' "$MAZEFILE")
+MAZE=$(sed 's#[/\\]#\\&#g;s#^#s/$/#;s#$#~/#;$s#~/$#/#' "$MAZEFILE")
 
 GAMEFILE=$(tempfile) || exit
 trap '{ rm -f $GAMEFILE; }' EXIT
