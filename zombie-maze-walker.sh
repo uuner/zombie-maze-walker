@@ -7,6 +7,15 @@ if [ -f "$1" ]; then
   MAZEFILE="$1"
 fi
 
+while read line; do
+  new=$(wc -c <<< "$line")
+  if [[ -n "$prev" ]] && [[ ! "$new" = "$prev" ]]; then
+    echo "Lines of the maze must have equal length. Please fix."
+    exit 1
+  fi
+  prev=$new
+done < "$MAZEFILE"
+
 MAZE=$(sed 's#[/\\]#\\&#g;s#^#s/$/#;s#$#~/#;$s#~/$#/#' "$MAZEFILE")
 
 GAMEFILE=$(tempfile) || exit
