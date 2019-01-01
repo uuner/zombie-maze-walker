@@ -42,3 +42,12 @@ You can build your own maze. The game assumes the maze is of rectangular shape,
 so keep the length of all lines equal. The character is represented by one of 
 ``><^v`` characters. Zombies are one of the ``udlr`` letters. The exit must
 be on the outer border.
+
+## Replay mode
+
+To record your game and replay it later pass the maze file parameter
+followed by the ``--replay`` flag.
+```
+./zombie-maze-walker.sh maze.txt --replay
+```
+The game will output the command to replay your game after you finish the game.
