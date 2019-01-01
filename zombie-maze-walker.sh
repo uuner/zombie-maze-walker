@@ -16,10 +16,13 @@ while read line; do
   prev=$new
 done < "$MAZEFILE"
 
+LOG="/tmp/gamelog.txt"
+[ "$2" = "--replay" ] && REPLAY=true || REPLAY=false
+
 MAZE=$(sed 's#[/\\]#\\&#g;s#^#s/$/#;s#$#~/#;$s#~/$#/#' "$MAZEFILE")
 
 GAMEFILE=$(tempfile) || exit
-trap '{ rm -f $GAMEFILE; }' EXIT
+trap '{ $REPLAY && echo To rerun "\"sed -nf $GAMEFILE < $LOG\"" || rm -f $GAMEFILE; }' EXIT
 
 WIDTH=$(read line < $MAZEFILE; echo -n "$line" | wc -c)
 
@@ -121,4 +124,4 @@ do
     echo
     mytime=$mytimenew
   fi
-done) | sed -nf $GAMEFILE
+done) | ( $REPLAY && tee "$LOG" || cat ) | sed -nf $GAMEFILE
