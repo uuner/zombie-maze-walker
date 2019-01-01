@@ -10,7 +10,7 @@ fi
 LOG="/tmp/gamelog.txt"
 [ "$2" = "--replay" ] && REPLAY=true || REPLAY=false
 
-MAZE=$(sed 's#[/\\]#\\&#g;s#^#s/$/#;s#$#~/#;$s#~/\$#/#' "$MAZEFILE")
+MAZE=$(sed 's#[/\\]#\\&#g;s#^#s/$/#;s#$#~/#;$s#~/$#/#' "$MAZEFILE")
 
 GAMEFILE=$(tempfile) || exit
 trap '{ $REPLAY && echo To rerun "\"sed -nf $GAMEFILE < $LOG\"" || rm -f $GAMEFILE; }' EXIT
