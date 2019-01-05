@@ -9,10 +9,9 @@ and run the script:
 ./zombie-maze-walker.sh
 ```
 
-To play with some other maze pass the name of maze file
-in its first argument. For example:
+To play with some other maze use the flag ``-f`` For example:
 ```
-./zombie-maze-walker.sh smallmaze.txt
+./zombie-maze-walker.sh -f smallmaze.txt
 ```
 
 ## Requirements
@@ -45,9 +44,8 @@ be on the outer border.
 
 ## Replay mode
 
-To record your game and replay it later pass the maze file parameter
-followed by the ``--replay`` flag.
+To record your game and replay it later use the ``-r`` flag.
 ```
-./zombie-maze-walker.sh maze.txt --replay
+./zombie-maze-walker.sh -r
 ```
 The game will output the command to replay your game after you finish the game.

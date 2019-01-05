@@ -1,11 +1,23 @@
 #!/usr/bin/env bash
 
-IFS=''
+MAZEFILE=maze.txt
+REPLAY=false
 
-MAZEFILE="maze.txt"
-if [ -f "$1" ]; then
-  MAZEFILE="$1"
+while getopts "f:r" opt; do
+  case "$opt" in
+    r)   REPLAY=true;;
+    f)   MAZEFILE="$OPTARG";;
+    [?]) echo "Usage: $0 [-r] [-f mazefile]"
+         exit 1;;
+  esac
+done
+
+if [ ! -f "$MAZEFILE" ]; then
+  echo Maze file "$MAZEFILE" was not found.
+  exit 1
 fi
+
+IFS=''
 
 while read line; do
   new=$(wc -c <<< "$line")
@@ -17,8 +29,6 @@ while read line; do
 done < "$MAZEFILE"
 
 LOG="/tmp/gamelog.txt"
-[ "$2" = "--replay" ] && REPLAY=true || REPLAY=false
-
 MAZE=$(sed 's#[/\\]#\\&#g;s#^#s/$/#;s#$#~/#;$s#~/$#/#' "$MAZEFILE")
 
 GAMEFILE=$(tempfile) || exit
