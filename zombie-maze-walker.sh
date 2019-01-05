@@ -82,10 +82,10 @@ b display
 
 # nemesis movements
 # turning around
-s/\([^ ].\{$WIDTH\}\)u/\1d/g
-s/d\(.\{$WIDTH\}[^ ]\)/u\1/g
-s/r\([^ ]\)/l\1/g
-s/\([^ ]\)l/\1r/g
+s/\(\([^ ].\{$WIDTH\}\)\|\(^.\{,$WIDTH\}\)\)u/\1d/g
+s/d\(\(.\{$WIDTH\}[^ ]\|\(.\{,$WIDTH\}\)$\)\)/u\1/g
+s/r\([^ ]\|~\|$\)/l\1/g
+s/\([^ ]\|~\|^\)l/\1r/g
 
 # moving
 s/ \(.\{$WIDTH\}\)u/u\1 /g
