@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MAZEFILE=maze.txt
+MAZEFILE=`dirname $0`/maze.txt
 REPLAY=false
 
 while getopts "f:ri" opt; do
