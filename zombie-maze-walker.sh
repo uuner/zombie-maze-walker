@@ -3,11 +3,18 @@
 MAZEFILE=maze.txt
 REPLAY=false
 
-while getopts "f:r" opt; do
+while getopts "f:ri" opt; do
   case "$opt" in
     r)   REPLAY=true;;
     f)   MAZEFILE="$OPTARG";;
-    [?]) echo "Usage: $0 [-r] [-f mazefile]"
+    i)   INVERTWALLS='s/[^><^vuldr ]/[7m&[m/g';;
+    [?]) cat <<- EOF
+		Usage: $0 [OPTION] [-f mazefile]"
+		  -f filename 
+		        use the custom maze file. Default: maze.txt
+		  -r    replay mode. Print the replay command at the end.
+		  -i    invert wall colors.
+		EOF
          exit 1;;
   esac
 done
@@ -95,6 +102,7 @@ g
 s/~/\\
 /g
 
+$INVERTWALLS
 s/[><^v]/[1;36m&[m/g
 s/[udlr]/[1;32mZ[m/g
 
