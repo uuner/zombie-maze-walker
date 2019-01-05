@@ -48,4 +48,4 @@ To record your game and replay it later use the ``-r`` flag.
 ```
 ./zombie-maze-walker.sh -r
 ```
-The game will output the command to replay your game after you finish the game.
+The game will output the command to replay your game after you finish playing.
