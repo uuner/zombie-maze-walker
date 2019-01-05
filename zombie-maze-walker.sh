@@ -94,7 +94,7 @@ s/r / r/g
 s/ l/l /g
 
 # winning condition
-/\(^[^~]*\^\)\|\(v[^~]*$\)\|\(>~\)\|\(~<\)/s/$/~YOU WON!!! HAVE A COOKIE/
+/\(^[^~]*\^\)\|\(v[^~]*$\)\|\(>~\)\|\(~<\)\|\(^<\)\|\(>$\)/s/$/~YOU WON!!! HAVE A COOKIE/
 
 x
 :display
