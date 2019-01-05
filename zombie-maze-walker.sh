@@ -123,9 +123,9 @@ export LC_ALL="C"
   RES=$?
   CMD="$TMP"
   if [ "$CMD" == '' ]; then
-    read -s -n 1 TMP; CMD="$CMD$TMP";
+    read -s -n 1 TMP; CMD="$CMD$TMP"
     if [ "$CMD" == '[' ]; then
-      read -s -n 1 TMP; CMD="$CMD$TMP";
+      read -s -n 1 TMP; CMD="$CMD$TMP"
     fi
   fi
   if [ $RES -eq 0 ]; then
