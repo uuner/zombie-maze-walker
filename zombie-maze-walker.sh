@@ -37,6 +37,10 @@ while read line; do
 done < "$MAZEFILE"
 
 MAZE=$(sed 's#[/\\]#\\&#g;s#^#s/$/#;s#$#~/#;$s#~/$#/#' "$MAZEFILE")
+if [[ ! $MAZE =~ ^([^><v^]*[><v^][^><v^]*)$ ]]; then
+  echo "The maze must have exactly one player represented by ^,>,<, or v"
+  exit 1
+fi
 
 GAMEFILE=$(tempfile) || exit
 trap '{ $REPLAY && echo To rerun "\"sed -nf $GAMEFILE < $LOG\"" || rm -f $GAMEFILE; }' EXIT
