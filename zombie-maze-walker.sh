@@ -2,6 +2,7 @@
 
 MAZEFILE=`dirname $0`/maze.txt
 REPLAY=false
+INVERTWALLS=
 
 while getopts "f:ri" opt; do
   case "$opt" in
