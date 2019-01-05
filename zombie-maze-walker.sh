@@ -110,27 +110,22 @@ EOF
 mytime="`date +%s`"
 
 export LC_ALL="C"
-(while true;
-do
+(while true; do
   read -s -t 1 -n 1 TMP
   RES=$?
   CMD="$TMP"
-  if [ "$CMD" == '' ]
-  then
+  if [ "$CMD" == '' ]; then
     read -s -n 1 TMP; CMD="$CMD$TMP";
-    if [ "$CMD" == '[' ]
-    then
+    if [ "$CMD" == '[' ]; then
       read -s -n 1 TMP; CMD="$CMD$TMP";
     fi
   fi
-  if [ $RES -eq 0 ]
-  then
+  if [ $RES -eq 0 ]; then
     echo "$CMD"
     continue
   fi
   mytimenew="`date +%s`"
-  if [ "$mytimenew" != "$mytime" ]
-  then
+  if [ "$mytimenew" != "$mytime" ]; then
     echo
     mytime=$mytimenew
   fi
