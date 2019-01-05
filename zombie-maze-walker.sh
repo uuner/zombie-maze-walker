@@ -5,7 +5,8 @@ REPLAY=false
 
 while getopts "f:ri" opt; do
   case "$opt" in
-    r)   REPLAY=true;;
+    r)   REPLAY=true
+         LOG=$(tempfile) || exit;;
     f)   MAZEFILE="$OPTARG";;
     i)   INVERTWALLS='s/[^><^vuldr ]/[7m&[m/g';;
     [?]) cat <<- EOF
@@ -35,7 +36,6 @@ while read line; do
   prev=$new
 done < "$MAZEFILE"
 
-LOG="/tmp/gamelog.txt"
 MAZE=$(sed 's#[/\\]#\\&#g;s#^#s/$/#;s#$#~/#;$s#~/$#/#' "$MAZEFILE")
 
 GAMEFILE=$(tempfile) || exit
