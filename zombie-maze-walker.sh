@@ -86,18 +86,22 @@ b display
 }
 
 # nemesis movements
+:nem
+/[udlr]/{
 # turning around
-s/\(\([^ ].\{$WIDTH\}\)\|\(^.\{,$WIDTH\}\)\)u/\1d/g
-s/d\(\(.\{$WIDTH\}[^ ]\|\(.\{,$WIDTH\}\)$\)\)/u\1/g
-s/r\([^ ]\|~\|$\)/l\1/g
-s/\([^ ]\|~\|^\)l/\1r/g
+s/\(\([^ ].\{$WIDTH\}\)\|\(^.\{,$WIDTH\}\)\)u/\1D/
+s/d\(\(.\{$WIDTH\}[^ ]\|\(.\{,$WIDTH\}\)$\)\)/U\1/
+s/r\([^ ]\|~\|$\)/L\1/
+s/\([^ ]\|~\|^\)l/\1R/
 
 # moving
-s/ \(.\{$WIDTH\}\)u/u\1 /g
-s/d\(.\{$WIDTH\}\) / \1d/g
-s/r / r/g
-s/ l/l /g
-
+s/ \(.\{$WIDTH\}\)u/U\1 /
+s/d\(.\{$WIDTH\}\) / \1D/
+s/r / R/
+s/ l/L /
+b nem
+}
+y/UDLR/udlr/
 # winning condition
 /\(^[^~]*\^\)\|\(v[^~]*$\)\|\(>~\)\|\(~<\)\|\(^<\)\|\(>$\)/s/$/~YOU WON!!! HAVE A COOKIE/
 
